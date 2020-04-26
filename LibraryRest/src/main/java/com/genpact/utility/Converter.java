@@ -50,6 +50,21 @@ public class Converter {
 		dto.setLid(book.getLid());
 		return dto;
 	}
+	
+	/**
+	 * 
+	 * @param bookDTO
+	 * @return
+	 */
+	public Book convertToEntity(BookDTO bookDTO) {
+		Book book = new Book();
+		book.setId(bookDTO.getId());
+		book.setName(bookDTO.getName());
+		book.setAuthor(bookDTO.getAuthor());
+		book.setYear(bookDTO.getYear());
+		book.setLid(bookDTO.getLid());
+		return book;
+	}
 
 	/**
 	 * 

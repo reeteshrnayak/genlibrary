@@ -58,7 +58,7 @@ public class LibraryApplicationRunner {
 			book2.setName("Lord of the Rings");
 			book2.setAuthor("J. R. R. Tolkien");
 			book2.setYear(1954);
-			book1.setLid(1);
+			book2.setLid(1);
 			bookDao.save(book2);
 			
 			Book book3 = new Book();

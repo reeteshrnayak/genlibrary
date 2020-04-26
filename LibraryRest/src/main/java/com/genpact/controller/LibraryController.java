@@ -1,5 +1,6 @@
 package com.genpact.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.genpact.config.LibraryException;
 import com.genpact.model.LibraryDTO;
 import com.genpact.model.ResultWrapper;
 import com.genpact.service.ILibraryService;
 import com.genpact.utility.Converter;
 
 /**
- * 
+ * This is the controller class for fetching the Library details.
  * @author Reetesh R Nayak
  *
  */
@@ -36,7 +38,7 @@ public class LibraryController {
 	private Converter converter;
 	
 	@GetMapping
-	public ResultWrapper<List<LibraryDTO>> listLibs() {
+	public ResultWrapper<List<LibraryDTO>> listLibs() throws IOException{
 		List<LibraryDTO> libList = new ArrayList<>();
 		String message = "";
 		try {
@@ -44,7 +46,7 @@ public class LibraryController {
 			message = "Library list fetched successfully.";
 		} catch (Exception e) {
 			LOGGER.error(e);
-			message = "Error while fetching library list. Please contact Admin.";
+			throw new LibraryException("L006", "Error while fetching library list. Please contact Admin.");
 		}
 		return new ResultWrapper<>(HttpStatus.OK.value(), message, libList);
 	}

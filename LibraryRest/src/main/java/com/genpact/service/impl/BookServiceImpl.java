@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.genpact.dao.BookDao;
 import com.genpact.model.Book;
-import com.genpact.model.BookDTO;
 import com.genpact.service.IBookService;
 
 /**
@@ -62,28 +61,28 @@ public class BookServiceImpl implements IBookService {
 	}
 
 	@Override
-	public BookDTO update(BookDTO bookDTO) {
+	public Book update(Book book) {
 		try {
-			Book book = findById(bookDTO.getId());
+			Book newBook = findById(book.getId());
 			if (book != null) {
-				BeanUtils.copyProperties(bookDTO, book, "id");
+				BeanUtils.copyProperties(book, newBook, "id");
 				bookDao.save(book);
 			}
 		} catch (Exception e) {
 			LOGGER.error("Exception occurred while updating Book details :" + e);
 		}
-		return bookDTO;
+		return book;
 	}
 
 	@Override
-	public Book save(BookDTO bookDTO) {
-		Book book = new Book();
-		book.setName(bookDTO.getName());
-		book.setAuthor(bookDTO.getAuthor());
-		book.setYear(bookDTO.getYear());
-		book.setLid(bookDTO.getLid());
+	public Book save(Book book) {
+		Book newBook = new Book();
+		newBook.setName(book.getName());
+		newBook.setAuthor(book.getAuthor());
+		newBook.setYear(book.getYear());
+		newBook.setLid(book.getLid());
 		try {
-			return bookDao.save(book);
+			return bookDao.save(newBook);
 		} catch (Exception e) {
 			LOGGER.error("Exception occurred while saving Book details :" + e);
 		}

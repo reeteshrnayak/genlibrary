@@ -1,8 +1,8 @@
 package com.genpact.service;
 
 import java.util.List;
+
 import com.genpact.model.Book;
-import com.genpact.model.BookDTO;
 
 /**
  * 
@@ -11,7 +11,7 @@ import com.genpact.model.BookDTO;
  */
 public interface IBookService {
 
-	Book save(BookDTO user);
+	Book save(Book book);
 
 	List<Book> findAllBooksByLibId(int lid);
 
@@ -19,5 +19,5 @@ public interface IBookService {
 
 	Book findById(int id);
 
-	BookDTO update(BookDTO dto);
+	Book update(Book book);
 }
